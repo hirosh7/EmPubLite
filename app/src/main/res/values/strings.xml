@@ -2,10 +2,7 @@
 <resources>
 
     <string name="app_name">EmPub Lite</string>
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="rock">rock</string>
-    <string name="paper">paper</string>
-    <string name="scissors">scissors</string>
+
 
 </resources>
