@@ -1,8 +1,8 @@
 package com.frostycold.empublite;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -29,13 +29,18 @@ public class EmPubLiteActivity extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         switch (item.getItemId()) {
             case android.R.id.home:
-                Log.d("", "Pressed 'home' option");
                 return(true);
+
             case R.id.about:
-                Log.d("mtag", "Pressed 'About' option");
+                Intent i = new Intent(this, SimpleContentActivity.class);
+                startActivity(i);
+
                 return(true);
+
             case R.id.help:
-                Log.d("", "Pressed 'Help' option");
+                i = new Intent(this, SimpleContentActivity.class);
+                startActivity(i);
+
                 return(true);
         }
 
