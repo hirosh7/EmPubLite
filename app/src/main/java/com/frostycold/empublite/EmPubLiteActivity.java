@@ -2,20 +2,32 @@ package com.frostycold.empublite;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 
 public class EmPubLiteActivity extends ActionBarActivity {
 
     ActionBar actionBar;
+    private ViewPager pager = null;
+    private ContentsAdapter adapter = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+
+        pager = (ViewPager) findViewById(R.id.pager);
+
+        // Set the pager adapter, turn off progress bar and show pager
+        adapter = new ContentsAdapter(this);
+        pager.setAdapter(adapter);
+        findViewById(R.id.progressBar1).setVisibility(View.GONE);
+        pager.setVisibility(View.VISIBLE);
 
         // add logo to home location in action bar
         actionBar = getSupportActionBar();
