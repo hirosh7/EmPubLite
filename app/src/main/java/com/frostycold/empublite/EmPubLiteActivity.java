@@ -13,18 +13,16 @@ import android.view.View;
 public class EmPubLiteActivity extends ActionBarActivity {
 
     ActionBar actionBar;
-    private ViewPager pager = null;
-    private ContentsAdapter adapter = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-        pager = (ViewPager) findViewById(R.id.pager);
+        ViewPager pager = (ViewPager) findViewById(R.id.pager);
 
         // Set the pager adapter, turn off progress bar and show pager
-        adapter = new ContentsAdapter(this);
+        ContentsAdapter adapter = new ContentsAdapter(this);
         pager.setAdapter(adapter);
         findViewById(R.id.progressBar1).setVisibility(View.GONE);
         pager.setVisibility(View.VISIBLE);
@@ -50,19 +48,25 @@ public class EmPubLiteActivity extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         switch (item.getItemId()) {
             case android.R.id.home:
-                return(true);
+                return (true);
 
             case R.id.about:
                 Intent i = new Intent(this, SimpleContentActivity.class);
+
+                i.putExtra(SimpleContentActivity.EXTRA_FILE,
+                        "file:///android_asset/misc/about.html");
                 startActivity(i);
 
-                return(true);
+                return (true);
 
             case R.id.help:
                 i = new Intent(this, SimpleContentActivity.class);
+
+                i.putExtra(SimpleContentActivity.EXTRA_FILE,
+                        "file:///android_asset/misc/help.html");
                 startActivity(i);
 
-                return(true);
+                return (true);
         }
 
         return super.onOptionsItemSelected(item);
