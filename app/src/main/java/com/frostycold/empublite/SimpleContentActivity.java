@@ -22,7 +22,7 @@ public class SimpleContentActivity extends ActionBarActivity {
 
         if (getFragmentManager().findFragmentById(android.R.id.content) == null) {
             String file = getIntent().getStringExtra(EXTRA_FILE);
-            Fragment f = SimpleContentFragment.newInstance(file);
+            Fragment f = SimpleContentsFragment.newInstance(file);
 
             getFragmentManager().beginTransaction()
                     .add(android.R.id.content, f).commit();
