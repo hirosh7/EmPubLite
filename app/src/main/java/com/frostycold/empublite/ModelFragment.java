@@ -58,6 +58,7 @@ public class ModelFragment extends Fragment {
             }
             catch (IOException e) {
                 Log.e(getClass().getSimpleName(), "Exception parsing JSON", e);
+                // TODO: pass and handle this type of event in the UI
             }
         }
     }
