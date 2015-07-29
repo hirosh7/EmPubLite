@@ -2,6 +2,7 @@ package com.frostycold.empublite;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
@@ -22,6 +23,9 @@ public class EmPubLiteActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        setupStrictMode();
+
         setContentView(R.layout.main);
 
         pager = (ViewPager) findViewById(R.id.pager);
@@ -31,6 +35,8 @@ public class EmPubLiteActivity extends ActionBarActivity {
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE);
         actionBar.setIcon(R.drawable.ic_launcher);
+
+        getSupportActionBar().setHomeButtonEnabled(true);
     }
 
     @Override
@@ -47,7 +53,8 @@ public class EmPubLiteActivity extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         switch (item.getItemId()) {
             case android.R.id.home:
-                return (true);
+                pager.setCurrentItem(0, false);
+                return(true);
 
             case R.id.about:
                 Intent i = new Intent(this, SimpleContentActivity.class);
@@ -105,7 +112,22 @@ public class EmPubLiteActivity extends ActionBarActivity {
         pager.setVisibility(View.VISIBLE);
     }
 
+    @SuppressWarnings("unused")
     public void onEventMainThread(BookLoadedEvent event) {
         setupPager(event.getBook());
+    }
+
+    private void setupStrictMode() {
+        StrictMode.ThreadPolicy.Builder builder=
+                new StrictMode.ThreadPolicy.Builder().detectNetwork();
+
+        if (BuildConfig.DEBUG) {
+            builder.penaltyDeath();
+        }
+        else {
+            builder.penaltyLog();
+        }
+
+        StrictMode.setThreadPolicy(builder.build());
     }
 }
